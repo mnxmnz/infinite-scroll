@@ -1,42 +1,49 @@
 import { QueryKey, useInfiniteQuery } from '@tanstack/react-query';
-import { useEffect } from 'react';
+
 import { useInView } from 'react-intersection-observer';
 
 interface InfiniteScrollOptions<T> {
   queryKey: QueryKey;
   queryFn: (pageParam: number, pageSize: number) => Promise<T[]>;
-  pageSize?: number;
+  limit?: number;
+  autoLoad?: boolean;
 }
 
-const useInfiniteScroll = <T>({ queryKey, queryFn, pageSize = 20 }: InfiniteScrollOptions<T>) => {
-  const { ref: targetRef, inView: isTargetVisible } = useInView();
-
-  const defaultPageParam = 0;
-  const currentPageSize = pageSize;
+const useInfiniteScroll = <T>({ queryKey, queryFn, limit = 20, autoLoad = true }: InfiniteScrollOptions<T>) => {
+  const { ref: targetRef, inView: isTargetVisible } = useInView({
+    onChange: inView => {
+      if (autoLoad && inView && hasNextPage && !isFetchingNextPage && !isError) {
+        fetchNextPage();
+      }
+    },
+  });
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isError } = useInfiniteQuery({
     queryKey,
-    queryFn: ({ pageParam = defaultPageParam }) => queryFn(pageParam, currentPageSize),
-    initialPageParam: defaultPageParam,
+    queryFn: ({ pageParam = 0 }) => queryFn(pageParam, limit),
+    initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
-      const isLastPage = lastPage.length < currentPageSize;
-      const nextPageParam = allPages.length * currentPageSize;
+      const isLastPage = lastPage.length < limit;
+      const nextPageParam = allPages.length * limit;
 
       return isLastPage ? null : nextPageParam;
     },
     select: ({ pages }) => pages.flat(),
   });
 
-  useEffect(() => {
-    if (isTargetVisible && hasNextPage && !isError) {
+  const onClickLoadMore = () => {
+    if (hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
-  }, [isTargetVisible, hasNextPage, fetchNextPage, isError]);
+  };
 
   return {
     targetRef,
+    isTargetVisible,
     data,
     isFetchingNextPage,
+    hasNextPage,
+    onClickLoadMore,
   };
 };
 
