@@ -11,6 +11,9 @@ interface InfiniteScrollOptions<T> {
 
 const useInfiniteScroll = <T>({ queryKey, queryFn, limit = 20, autoLoad = true }: InfiniteScrollOptions<T>) => {
   const { ref: targetRef, inView: isTargetVisible } = useInView({
+    threshold: [0, 0.25, 0.5, 0.75, 1],
+    rootMargin: '100px 0px',
+    delay: 100,
     onChange: inView => {
       if (autoLoad && inView && hasNextPage && !isFetchingNextPage && !isError) {
         fetchNextPage();
@@ -18,7 +21,7 @@ const useInfiniteScroll = <T>({ queryKey, queryFn, limit = 20, autoLoad = true }
     },
   });
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isError } = useInfiniteQuery({
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isError, isLoading } = useInfiniteQuery({
     queryKey,
     queryFn: ({ pageParam = 0 }) => queryFn(pageParam, limit),
     initialPageParam: 0,
@@ -31,7 +34,7 @@ const useInfiniteScroll = <T>({ queryKey, queryFn, limit = 20, autoLoad = true }
     select: ({ pages }) => pages.flat(),
   });
 
-  const onClickLoadMore = () => {
+  const triggerNextPage = () => {
     if (hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
@@ -43,7 +46,8 @@ const useInfiniteScroll = <T>({ queryKey, queryFn, limit = 20, autoLoad = true }
     data,
     isFetchingNextPage,
     hasNextPage,
-    onClickLoadMore,
+    isLoading,
+    triggerNextPage,
   };
 };
 
