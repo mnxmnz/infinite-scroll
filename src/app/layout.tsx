@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { ReactNode } from 'react';
 
-import ReactQueryMockProvider from '@/components/ReactQueryMockProvider';
+import ReactQueryMockProvider from '@/providers/ReactQueryMockProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
