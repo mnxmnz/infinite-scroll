@@ -5,13 +5,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
 
-export default function Providers({ children }: { children: ReactNode }) {
+export default function ReactQueryMockProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     async function enableMocking() {
-      if (process.env.NODE_ENV !== 'development') {
-        return;
-      }
-
       const initMocks = await import('../../mocks');
 
       await initMocks.default();

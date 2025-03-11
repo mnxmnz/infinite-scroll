@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 import { ReactNode } from 'react';
 
-import Providers from '@/components/Providers';
+import ReactQueryMockProvider from '@/components/ReactQueryMockProvider';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <Providers>{children}</Providers>
+        <ReactQueryMockProvider>{children}</ReactQueryMockProvider>
       </body>
     </html>
   );
