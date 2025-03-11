@@ -1,0 +1,23 @@
+.item {
+  border: 1px solid #eaeaea;
+  border-radius: 8px;
+  padding: 16px;
+  transition: transform 0.2s;
+}
+
+.item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 1.1rem;
+  margin: 12px 0;
+  color: #333;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
