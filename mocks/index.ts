@@ -1,5 +1,5 @@
 export default async function initMocks() {
-  if (process.env.NEXT_PUBLIC_USE_MOCK !== 'true') {
+  if (process.env.NEXT_PUBLIC_API_MOCKING !== 'enabled') {
     return;
   }
 
