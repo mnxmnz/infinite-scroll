@@ -5,13 +5,13 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 import { Item } from '@/types/item';
 
-import styles from './ThumbnailCard.module.css';
+import styles from './ItemCard.module.css';
 
-interface ThumbnailCardProps {
+interface ItemCardProps {
   item: Item;
 }
 
-export default function ThumbnailCard({ item }: ThumbnailCardProps) {
+export default function ItemCard({ item }: ItemCardProps) {
   const [imageLoading, setImageLoading] = useState(true);
 
   return (

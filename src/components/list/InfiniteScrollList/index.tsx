@@ -1,11 +1,11 @@
 import { QueryKey } from '@tanstack/react-query';
 
+import Loading from '@/components/common/Loading';
+import ItemCard from '@/components/item/ItemCard';
+import ItemCardSkeleton from '@/components/item/ItemCardSkeleton';
 import { Item } from '@/types/item';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 
-import Loading from './Loading';
-import ThumbnailCard from './ThumbnailCard';
-import ThumbnailCardSkeleton from './ThumbnailCardSkeleton';
 import styles from './InfiniteScrollList.module.css';
 
 interface InfiniteScrollListProps {
@@ -23,10 +23,10 @@ interface ListContentProps {
 
 function ListContent({ isLoading, data, queryKey }: ListContentProps) {
   if (isLoading) {
-    return <ThumbnailCardSkeleton />;
+    return <ItemCardSkeleton />;
   }
 
-  return data?.map(item => <ThumbnailCard key={`${queryKey}-${item.id}`} item={item} />);
+  return data?.map(item => <ItemCard key={`${queryKey}-${item.id}`} item={item} />);
 }
 
 interface LoadMoreSectionProps {
