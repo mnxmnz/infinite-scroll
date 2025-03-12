@@ -13,8 +13,8 @@ export default function ReactQueryMockProvider({ children }: { children: ReactNo
       try {
         if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
           const initMocks = await import('../../mocks');
-          await initMocks.default();
 
+          await initMocks.default();
           setIsMockInitialized(true);
         }
       } catch (error) {

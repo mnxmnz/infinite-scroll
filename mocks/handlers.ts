@@ -5,7 +5,6 @@ export const handlers = [
     const url = new URL(request.url);
     const offset = Number(url.searchParams.get('offset')) || 0;
     const limit = Number(url.searchParams.get('limit')) || 20;
-
     const items = Array.from({ length: limit }).map((_, index) => ({
       id: offset + index + 1,
       title: `아이템 ${offset + index + 1}번`,
