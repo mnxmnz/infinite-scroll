@@ -3,13 +3,17 @@ export default async function initMocks() {
     return;
   }
 
-  if (typeof window === 'undefined') {
-    const { server } = await import('./server');
-    server.listen({ onUnhandledRequest: 'bypass' });
-  } else {
-    const { worker } = await import('./browser');
-    await worker.start({
-      onUnhandledRequest: 'bypass',
-    });
+  try {
+    if (typeof window === 'undefined') {
+      const { server } = await import('./server');
+      server.listen({ onUnhandledRequest: 'bypass' });
+    } else {
+      const { worker } = await import('./browser');
+      await worker.start({
+        onUnhandledRequest: 'bypass',
+      });
+    }
+  } catch (error) {
+    console.error('MSW initialization failed: ', error);
   }
 }
