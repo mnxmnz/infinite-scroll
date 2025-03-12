@@ -5,7 +5,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 import { Item } from '@/types/item';
 
-import styles from './ItemCard.module.css';
+import styles from '@/components/items/card/styles.module.css';
 
 interface ItemCardProps {
   item: Item;

@@ -1,7 +1,7 @@
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import styles from '../ItemCard/ItemCard.module.css';
+import styles from '@/components/items/card/styles.module.css';
 
 export default function ItemCardSkeleton() {
   return (
