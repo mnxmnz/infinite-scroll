@@ -1,5 +1,7 @@
 # Infinite Scroll
 
+![preview](./images/preview.gif)
+
 ## Getting Started
 
 ### Installation
@@ -35,9 +37,10 @@ The application will open in your default browser at `http://localhost:3000`
 ### Mock API Configuration
 
 The application uses MSW (Mock Service Worker) to mock API endpoints.
-You can control the Mock API behavior using the `NEXT_PUBLIC_USE_MOCK` environment variable.
 
-- Set `NEXT_PUBLIC_USE_MOCK=true` to enable Mock API
-- Set `NEXT_PUBLIC_USE_MOCK=false` or leave it unset to disable Mock API
+You can control the Mock API behavior using the `NEXT_PUBLIC_API_MOCKING` environment variable.
+
+- Set `NEXT_PUBLIC_API_MOCKING=enabled` to enable Mock API
+- Set `NEXT_PUBLIC_API_MOCKING=disabled` or leave it unset to disable Mock API
 
 The Mock API is enabled by default in the development environment through `.env.development`.
