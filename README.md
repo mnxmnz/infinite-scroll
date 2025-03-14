@@ -1,24 +1,26 @@
 # Infinite Scroll
 
-## useInfiniteScroll
+🚀 [Live Demo](https://infinite-scroll-pi-beryl.vercel.app)
+
+## 1. useInfiniteScroll
 
 `useInfiniteScroll` hook simplifies the implementation of infinite scrolling functionality.
 
-### Key Features
+### 1-1. Key Features
 
 1. **Automatic Data Loading**: Automatically loads the next page of data when the specified element becomes visible as the user scrolls.
 2. **Manual Trigger Support**: Provides a `triggerNextPage` function to manually trigger loading of the next page.
 3. **Intersection Observer Integration**: Uses `react-intersection-observer` to detect element visibility.
 4. **React Query Integration**: Leverages `@tanstack/react-query`'s `useInfiniteQuery` for data fetching and caching.
 
-### Parameters
+### 1-2. Parameters
 
 - `queryKey`: React Query's query key
 - `queryFn`: Function to fetch data (takes page number and page size as arguments)
 - `limit`: Number of items per page (default: 20)
 - `autoLoad`: Whether to enable automatic loading (default: true)
 
-### Return Values
+### 1-3. Return Values
 
 - `targetRef`: Ref to attach to the element that triggers loading when visible
 - `isTargetVisible`: Whether the target element is visible
@@ -28,9 +30,9 @@
 - `isLoading`: Whether initial loading is in progress
 - `triggerNextPage`: Function to manually trigger loading of the next page
 
-## Getting Started
+## 2. Getting Started
 
-### Installation
+### 2-1. Installation
 
 1. Clone the repository
 
@@ -50,7 +52,7 @@ cd infinite-scroll
 npm install
 ```
 
-### Running the Application
+### 2-2. Running the Application
 
 To start the development server
 
@@ -60,7 +62,7 @@ npm run dev
 
 The application will open in your default browser at `http://localhost:3000`
 
-### Mock API Configuration
+### 2-3. Mock API Configuration
 
 The application uses MSW (Mock Service Worker) to mock API endpoints.
 
