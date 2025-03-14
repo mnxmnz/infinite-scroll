@@ -1,17 +1,17 @@
 import { http, HttpResponse } from 'msw';
 
 export const handlers = [
-  http.get('/api/items', ({ request }) => {
+  http.get('/api/products', ({ request }) => {
     const url = new URL(request.url);
     const offset = Number(url.searchParams.get('offset')) || 0;
     const limit = Number(url.searchParams.get('limit')) || 20;
-    const items = Array.from({ length: limit }).map((_, index) => ({
+    const products = Array.from({ length: limit }).map((_, index) => ({
       id: offset + index + 1,
-      title: `아이템 ${offset + index + 1}번`,
+      title: `상품 ${offset + index + 1}번`,
       imageUrl: `https://picsum.photos/200/300?random=${offset + index + 1}`,
     }));
 
-    return HttpResponse.json(items);
+    return HttpResponse.json(products);
   }),
 
   http.get('/_next/image', async ({ request }) => {

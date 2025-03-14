@@ -1,16 +1,21 @@
 'use client';
 
-import { getItems } from '@/apis/item';
-import ItemList from '@/components/items/list';
+import { getProducts } from '@/apis/product';
+import ProductList from '@/components/product/ProductList';
 
 export default function Home() {
   return (
     <main style={{ display: 'flex' }}>
       <div style={{ width: '50%' }}>
-        <ItemList title="자동 스크롤 목록" queryKey={['autoLoadMoreList']} queryFn={getItems} />
+        <ProductList title="자동 스크롤 목록" queryKey={['autoLoadMoreList']} queryFn={getProducts} />
       </div>
       <div style={{ width: '50%' }}>
-        <ItemList title="수동 더보기 목록" queryKey={['manualLoadMoreList']} queryFn={getItems} autoLoad={false} />
+        <ProductList
+          title="수동 더보기 목록"
+          queryKey={['manualLoadMoreList']}
+          queryFn={getProducts}
+          autoLoad={false}
+        />
       </div>
     </main>
   );

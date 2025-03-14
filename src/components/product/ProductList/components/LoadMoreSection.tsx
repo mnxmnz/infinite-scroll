@@ -1,5 +1,5 @@
 import Loading from '@/components/common/Loading';
-import styles from '@/components/items/list/styles.module.css';
+import styles from '@/components/product/ProductList/styles.module.css';
 
 interface LoadMoreSectionProps {
   autoLoad: boolean;

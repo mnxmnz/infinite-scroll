@@ -1,17 +1,17 @@
 import Image from 'next/image';
 import { useState } from 'react';
-import Skeleton from 'react-loading-skeleton';
+import SkeletonComponent from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import { Item } from '@/types/item';
+import { Product } from '@/types/product';
 
-import styles from '@/components/items/card/styles.module.css';
+import styles from '@/components/product/ProductItem/styles.module.css';
 
-interface ItemCardProps {
-  item: Item;
+interface ProductItemProps {
+  product: Product;
 }
 
-export default function ItemCard({ item }: ItemCardProps) {
+export default function ProductItem({ product }: ProductItemProps) {
   const [imageLoading, setImageLoading] = useState(true);
 
   return (
@@ -19,19 +19,19 @@ export default function ItemCard({ item }: ItemCardProps) {
       <div className={styles.imageWrapper}>
         {imageLoading && (
           <div className={styles.skeletonWrapper}>
-            <Skeleton height="100%" />
+            <SkeletonComponent height="100%" />
           </div>
         )}
         <Image
-          src={item.imageUrl}
-          alt={item.title}
+          src={product.imageUrl}
+          alt={product.title}
           fill
           className={styles.image}
           loading="lazy"
           onLoadingComplete={() => setImageLoading(false)}
         />
       </div>
-      <p className={styles.title}>{item.title}</p>
+      <p className={styles.title}>{product.title}</p>
     </li>
   );
 }
