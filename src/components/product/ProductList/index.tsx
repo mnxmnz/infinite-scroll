@@ -1,8 +1,8 @@
 import { QueryKey } from '@tanstack/react-query';
 
 import ProductItem from '@/components/product/ProductItem';
-import Skeleton from '@/components/product/ProductList/components/Skeleton';
-import LoadMoreSection from '@/components/product/ProductList/components/LoadMoreSection';
+import Skeleton from '@/components/product/ProductList/Skeleton';
+import LoadMoreSection from '@/components/product/ProductList/LoadMoreSection';
 import styles from '@/components/product/ProductList/styles.module.css';
 import useInfiniteScroll from '@/hooks/useInfiniteScroll';
 import { Product } from '@/types/product';
